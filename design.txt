@@ -1,0 +1,50 @@
+MVP resources
+- promos
+- brands (metadata)
+- reports | logs
+
+
+- advisor get, post
+
+
+
+
+
+           Promos* | Brands 
+-----------------------------------------
+  latest |  popular  |  fave  | search
+-----------------------------------------
+         [by ... | textinput]
+
+-----------------------------------------
+| promo# test-999                       |
+|                                       |
+|                                       |
+-----------------------------------------
+
+-----------------------------------------
+| promo# job-998                        |
+|                                       |
+|                                       |
+-----------------------------------------
+
+-----------------------------------------
+| Fresh taco                   1.10 XTE | 
+| ...                                   |
+| code: job-997                         |
+|                                       |
+-----------------------------------------
+
+
+	----> logged-in 
+	? open wallet/form
+	: redirect to log-in page, register as needed
+
+
+
+
+wallet
+
+
+
+
