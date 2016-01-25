@@ -4,12 +4,12 @@ window.opts = {
 };
 
 window.ItemRenderer = function ItemRenderer() {
-  var promo = this.getHtml(this.props.data); //console.log(promo.name.props.html)
+  var promo = this.getHtml(this.props.data);
     
     return (
       <div className="item">
         <h3>
-          {promo.name}, <a href={promo.payURL} target='ad'>{promo.amount} XTE</a> 
+          {promo.name}, <a href={this.props.data.payURL} target='ad'><button>{promo.amount} XTE</button></a> 
         </h3>
           <div>{promo.description}</div>
           {this.editBtn()} {this.saveBtn()} {this.cancelBtn()} {this.progressIcon('... saving ...')}
