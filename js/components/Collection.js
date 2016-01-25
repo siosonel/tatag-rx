@@ -21,6 +21,8 @@ window.CollectionDiv = React.createClass({
 window.ItemList = React.createClass({
 	render: function() {
     var itemNodes = this.props.data.items.map(function(item) {
+      if (!item) return "";
+
       return (
         <Item data={item} key={item.id} keyName={"id"}></Item>
       );

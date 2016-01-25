@@ -2,13 +2,23 @@ window.Editable = {
 	rendered: {},
 	edited: {},
 	
-	field: function (linkRel, obj, prop) {	
+	getHtml: function (obj) {
+		var copy = {};
+		for(var prop in obj) {
+			if (typeof obj[prop]=='string' || typeof obj[prop]=='number') copy[prop] = this.field('_', obj, prop);
+		}
+
+		return copy;
+	},
+
+	field: function (linkRel, obj, prop) {
 		if (!(linkRel in this.rendered)) this.rendered[linkRel] = {}; 
 		this.rendered[linkRel][prop] = obj[prop];
+
+		if ('edit' in obj && (obj.edit.inputs.optional.indexOf(prop)!=1 || obj.edit.inputs.required.indexOf(prop)!=1))
+			return <EditableSpan linkRel={linkRel} propName={prop} html={obj[prop]} editable={this.state.editStep} onChange={this.trackEdited} />
+		else return obj[prop]
 		
-		return 'edit' in obj && (obj.edit.inputs.optional.indexOf(prop)!=1 || obj.edit.inputs.required.indexOf(prop)!=1)
-			? <EditableSpan linkRel={linkRel} propName={prop} html={obj[prop]} editable={this.state.editStep} onChange={this.trackEdited} />
-			: obj[prop];
 	},
 	
 	trackEdited: function (e) {
@@ -22,7 +32,8 @@ window.Editable = {
 	},
 	
 	editBtn: function () {
-		return <div style={this.editStyle()} onClick={this.editClick}>edit</div>
+		if (!this.props.data.edit) return "";
+		return <div style={this.editStyle()} onClick={this.editClick}>edit</div>;
 	},
 
 	editStyle: function () {
@@ -111,7 +122,7 @@ window.EditableSpan = React.createClass({
 		this.setState({edited: false, html: this.props.html});
 	},
 	
-	render: function(){		
+	render: function(){
 		if (!this.props.editable) this.lastHtml = '';
 		
 		var html = this.props.editable && this.lastHtml ? this.lastHtml : this.props.html;

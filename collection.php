@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>T-React ui</title>
+	<title>Tatag <?php echo $handler ?></title>
 
 
 	<link rel="stylesheet" href="/ui/css/normalize.css">
@@ -33,6 +33,10 @@
 			margin: 0.8rem;
 			padding: 1rem;
 			background-color: #ececec;
+		}
+
+		.item div {
+			margin: 0.5rem;
 		}
 	</style>	
 </head>
