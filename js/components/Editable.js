@@ -85,7 +85,7 @@ window.Editable = {
 		this.setState({editStep: numRequests ? 2 : 0});
 	},
 	
-	emptyFunction: function () {},
+	emptyFunction: function (resp) {},
 	
 	fieldReset: function (err) { console.log(err);
 		this.setState({editStep: 0});

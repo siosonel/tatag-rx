@@ -38,13 +38,23 @@
 		.item div {
 			margin: 0.5rem;
 		}
+
+
+		#scrollTo {
+			display: none;
+		}
 	</style>	
 </head>
 <body>	
 	<div id="container"></div>
+	<div style='width: 100%; text-align: center;'>
+		<button id='scrollTo' onclick='scrollMore()'>more ...</button>
+	</div>
+
 	<script type="text/babel" src="/rx/js/components/Editable.js"></script>
 	<script type="text/babel" src="/rx/<?php echo $itemJs ?>"></script>
 	<script type="text/babel" src="/rx/js/components/Collection.js"></script>
+	
 
 	<script>
 		function errHandler(err) {
@@ -53,6 +63,25 @@
 		}
 	
 		var api = phlatSimple(<?php echo $opts ?>);			
+
+		window.scrollTo='';
+
+		function paginate(collection) {
+			if (!collection) return;
+
+			scrollTo="";
+			if (collection.pageOrder=='desc' && collection.prev) scrollTo = collection.prev;
+			if (collection.pageOrder=='asc' && collection.next) scrollTo = collection.next; console.log(scrollTo)
+			$('#scrollTo').css('display', scrollTo ? 'inline-block' : 'none');		
+		}
+		
+		function scrollMore(e) {
+			api.loadId(scrollTo).then(App, errHandler);
+		}
+
+		function errHandler(err) {
+			alert(err.message);
+		}
 	</script>
 </body>
 </html>

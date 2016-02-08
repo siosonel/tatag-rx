@@ -1,4 +1,6 @@
 window.App = function main(resp) {
+  paginate(resp);
+
   ReactDOM.render(
     <CollectionDiv concept={opts.concept} data={api.byConcept[opts.concept]} collectionH1={opts.collectionH1} />,
     document.getElementById('container')
@@ -20,7 +22,7 @@ window.CollectionDiv = React.createClass({
 
 window.ItemList = React.createClass({
 	render: function() {
-    var itemNodes = this.props.data.items.map(function(item) {
+    var itemNodes = this.props.data.items.map(function(item) { //console.log(item)
       if (!item) return "";
 
       return (
@@ -48,8 +50,14 @@ window.Item = React.createClass({
 		this.setState({editStep: this.state.editStep==1 ? 1 : 0});
 	}, 
 
+  handleLink: function () {
+    if (this.state.editStep) return false;
+    else window.open(this.props.data.payURL);
+  },
+
   render: ItemRenderer
 });
+
 
 
 

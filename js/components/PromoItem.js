@@ -9,7 +9,7 @@ window.ItemRenderer = function ItemRenderer() {
     return (
       <div className="item">
         <h3>
-          {promo.name}, <a href={this.props.data.payURL} target='ad'><button>{promo.amount} XTE</button></a> 
+          {promo.name}, <button onClick={this.handleLink}>{promo.amount} XTE</button>
         </h3>
           <div>{promo.description}</div>
           {this.editBtn()} {this.saveBtn()} {this.cancelBtn()} {this.progressIcon('... saving ...')}
